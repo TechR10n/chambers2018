@@ -1,0 +1,36 @@
+#+TITLE: Setting up Spark
+#+AUTHOR: LabRaven
+#+LATEX_CLASS: myieee
+
+* Problem
+You want to emulate the Databricks Runtime locally on your Ubuntu Linix box.
+The latest DBR system environment is indicated here: https://docs.databricks.com/release-notes/runtime/7.2.html
+* JDK
+Set up default JDK
+#+BEGIN_SRC bash
+sudo update-alternatives --config java
+#+END_SRC bash
+
+* Python
+* Install Spark
+https://phoenixnap.com/kb/install-spark-on-ubuntu
+
+wget https://downloads.apache.org/spark/spark-3.0.0/spark-3.0.0-bin-hadoop2.7.tgz
+
+tar xvf spark-*
+
+sudo mv spark-3.0.0-bin-hadoop2.7 /opt/spark
+
+echo "export SPARK_HOME=/opt/spark" >> ~/.profile
+echo "export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin" >> ~/.profile
+echo "export PYSPARK_PYTHON=/usr/bin/python3" >> ~/.profile
+
+export SPARK_HOME=/opt/spark
+export PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+export PYSPARK_PYTHON=/usr/bin/python3
+
+source ~/.profile
+
+start-master.sh
+
+http://127.0.0.1:8080/
